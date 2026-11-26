@@ -11,3 +11,6 @@ class Libro(models.Model):
     fecha_publicacion = fields.Date(string='Fecha de publicación')
     disponible = fields.Boolean(string='Disponible', default=True)
     paginas = fields.Integer(string='Número de páginas')
+
+    # Relaciones
+    tema_ids = fields.Many2many('biblioteca.tema', string='Temas')
