@@ -19,7 +19,8 @@
     </record>
 
     <menuitem id="menu_configuracion" name="Configuración"
-              parent="menu_biblioteca" sequence="90"/>
+              parent="menu_biblioteca" sequence="90"
+              groups="group_bibliotecario"/>
     <menuitem id="menu_temas" name="Temas"
               parent="menu_configuracion" action="tema_action" sequence="10"/>
 
