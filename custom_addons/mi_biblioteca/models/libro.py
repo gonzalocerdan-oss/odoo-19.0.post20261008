@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class Libro(models.Model):
@@ -14,3 +14,14 @@ class Libro(models.Model):
 
     # Relaciones
     tema_ids = fields.Many2many('biblioteca.tema', string='Temas')
+    prestamo_ids = fields.One2many('biblioteca.prestamo', 'libro_id',
+                                   string='Préstamos')
+
+    # Campo calculado (no se guarda en la tabla)
+    num_prestamos = fields.Integer(string='Nº de préstamos',
+                                   compute='_compute_num_prestamos')
+
+    @api.depends('prestamo_ids')
+    def _compute_num_prestamos(self):
+        for libro in self:
+            libro.num_prestamos = len(libro.prestamo_ids)
